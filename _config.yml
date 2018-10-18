@@ -84,3 +84,7 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+
+connections:
+    connecttech2018:
+      output: true
