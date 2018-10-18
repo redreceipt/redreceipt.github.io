@@ -94,3 +94,4 @@ defaults:
     path: ""
     type: "connecttech2018"
   values:
+    layout: "post"
