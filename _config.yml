@@ -85,6 +85,12 @@ exclude:
   - README.md
   - CNAME
 
-connections:
-    connecttech2018:
-      output: true
+collections:
+  connecttech2018:
+    output: true
+
+defaults:
+  - scope:
+    path: ""
+    type: "connecttech2018"
+  values:
