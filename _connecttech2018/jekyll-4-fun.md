@@ -1,4 +1,0 @@
----
----
-
-Learning Jekyll is fun!
