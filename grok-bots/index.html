@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Team of Twenty Bots — Michael Neeley</title>
+  <meta name="description" content="How I use small, specialized AI assistants alongside my work as a software engineer.">
+  <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141311" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="My Team of Twenty Bots — Michael Neeley">
+  <meta property="og:description" content="How I use small, specialized AI assistants alongside my work as a software engineer.">
+  <meta property="og:url" content="https://redreceipt.github.io/grok-bots/">
+  <link rel="canonical" href="https://redreceipt.github.io/grok-bots/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/portfolio.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="shell">
+    <header class="site-header">
+      <a class="identity" href="/" aria-label="Michael Neeley, home">
+        <span class="monogram" aria-hidden="true">mn.</span>
+        <span>Michael Neeley</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="/#work">Work</a>
+        <a href="https://github.com/redreceipt">GitHub <span aria-hidden="true">↗</span></a>
+        <a href="mailto:michael@neeley.dev">Contact <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main" class="article">
+      <article aria-labelledby="article-title">
+        <h1 id="article-title">My Team of Twenty Bots</h1>
+        <p><em>How I use small, specialized AI assistants alongside my work as a software engineer.</em></p>
+        <p>I'm Michael Neeley (<a href="https://github.com/redreceipt">@redreceipt</a>), a software engineer at <a href="https://differential.com">Differential</a> working on Apollos, software for churches. The work isn't just writing code. There are pull requests to review, issues to triage, support questions to investigate, and a steady stream of notifications to sort through.</p>
+        <p>I use twenty Grok bots for recurring jobs: watching projects, sorting notifications, keeping PRs moving, and investigating bugs. Here's how I've split up that work, as of October 2026.</p>
+        <h2>How I organize the work</h2>
+        <p><strong>Switchboard</strong> gathers reports from the specialists and prepares my weekday briefing. I use it to bring updates together and pass new instructions to the bots they affect, instead of repeating myself in every chat.</p>
+        <figure class="bot-map" aria-labelledby="bot-map-caption">
+          <div class="bot-map-node">
+            <strong>Michael</strong>
+            <span>Decisions &amp; approvals</span>
+          </div>
+          <p class="bot-map-arrow" aria-hidden="true">↕</p>
+          <div class="bot-map-node bot-map-hub">
+            <strong>Switchboard</strong>
+            <span>Briefing &amp; coordination</span>
+          </div>
+          <p class="bot-map-arrow" aria-hidden="true">↕</p>
+          <div class="bot-map-groups">
+            <div>
+              <h3>Coordination</h3>
+              <ul role="list"><li>Foreman</li><li>Trawler</li><li>Chisel</li><li>Bottleneck</li></ul>
+            </div>
+            <div>
+              <h3>Inbox &amp; PRs</h3>
+              <ul role="list"><li>Sieve</li><li>Nanny</li><li>Stamp</li><li>Semver</li></ul>
+            </div>
+            <div>
+              <h3>Code improvement</h3>
+              <ul role="list"><li>Keystone</li><li>Codemod</li><li>Pruner</li><li>Smoke</li><li>Hotpath</li><li>Intruder</li><li>Onramp</li></ul>
+            </div>
+            <div>
+              <h3>Production &amp; support</h3>
+              <ul role="list"><li>Triager</li><li>Pipeline</li><li>Medic</li><li>Compass</li></ul>
+            </div>
+          </div>
+          <figcaption id="bot-map-caption">Switchboard consolidates reports from the specialists; they can also contact me directly.</figcaption>
+        </figure>
+        <h2>The daily rhythm</h2>
+        <p><strong>Before the weekday briefing</strong>, the coordination bots gather project status, scope concerns, and PRs waiting on a decision. Switchboard brings those reports together so I don't have to read each one separately.</p>
+        <p><strong>Through the day</strong>, Sieve checks inbox noise hourly, Nanny watches my PRs, and Semver keeps up with dependency updates. The code-improvement bots look for work without filling the review queue with competing PRs.</p>
+        <p><strong>Weekly and monthly passes</strong> cover Foreman's stale-ticket sweep, Bottleneck's constraint brief, and Keystone's technical proposal in Linear.</p>
+        <hr>
+        <h2>The roster</h2>
+        <h3>Coordination</h3>
+        <p><strong>Switchboard: Executive Assistant.</strong> Coordinates the other bots, gathers their digests, and prepares the briefing. When I change a standing rule, I can ask Switchboard to relay it to the bots it affects.</p>
+        <p><strong>Foreman: Project Manager.</strong> Watches the Linear projects I'm responsible for and posts updates when something changes. Its weekly sweep catches my assigned issues that have gone quiet, even if they aren't in a project.</p>
+        <p><strong>Trawler: Linear Projects.</strong> Takes a wider view across engineering projects and reports material status, blockers, and drift. Foreman focuses on moving my work forward; Trawler supplies a broader picture.</p>
+        <p><strong>Chisel: Engineering Manager.</strong> The scope critic. It compares planned work with active issues and PRs, then gives me concrete suggestions about what to cut, defer, or combine.</p>
+        <p><strong>Bottleneck: Constraints Advisor.</strong> Looks across the available business and project tools and proposes one top constraint, with evidence and concrete recommendations. I want a priority to act on, not another long status list.</p>
+        <h3>Inbox &amp; PRs</h3>
+        <p><strong>Sieve: Email &amp; Linear Triage.</strong> Owns the rules for clearing skippable work Gmail and Linear notifications while keeping real asks and blockers. For GitHub email, it checks the current PR or issue state rather than trusting the subject line. Archiving is a whole-thread operation, not deleting individual messages. It also looks for noise that can be turned off at the source, so it doesn't have to keep cleaning up the same notifications.</p>
+        <p><strong>Nanny: PR Monitor.</strong> Watches my PRs for CI, reviews, comments, and work that needs attention. Drafts are included: it summarizes their state and asks whether I want them marked ready, closed, or kept. It shouldn't make that decision for me or ask the same unchanged question every hour.</p>
+        <p><strong>Stamp: PR Reviews.</strong> Handles mechanical reviews and prepares briefs for changes that need my judgment. For in-scope simple changes, a clean automated review can lead to an approval through my account. It follows up on review feedback and conflicts so I don't have to chase every author myself. It doesn't merge PRs. In repos that don't require approvals, it tells authors they don't need to wait for mine.</p>
+        <p><strong>Semver: Dependency Updates.</strong> Works through Dependabot PRs and gets dependency branches into shape. It can approve and merge certain low-risk updates; major or uncertain changes come back to me for a decision. It also handles a limited slice of dependency-related email alongside Sieve.</p>
+        <h3>Code improvement</h3>
+        <p>I give these bots a one-open-PR rule: if their workstream already has an open PR, wait rather than start another. That keeps the review queue manageable.</p>
+        <p><strong>Keystone: Software Architect.</strong> Looks for unclear boundaries and handoffs between services and apps, then proposes concrete structural improvements. It also has a monthly technical-proposal routine that files a recommendation in Linear Triage, with evidence, tradeoffs, and a migration plan.</p>
+        <p><strong>Codemod: TypeScript Migration.</strong> Converts JavaScript to TypeScript in small, mechanical steps. The brief is to improve type safety without quietly changing behavior.</p>
+        <p><strong>Pruner: Code Cleanup.</strong> Looks for dead code, pointless wrappers, redundant tests, and unnecessary complexity. Deletion and simplification are the job, not adding another abstraction.</p>
+        <p><strong>Smoke: E2E Testing.</strong> Looks for critical flows without useful end-to-end coverage and adds tests for those gaps. The aim is protection against real regressions, not a bigger test count.</p>
+        <p><strong>Hotpath: Performance.</strong> Looks for repeated queries, unnecessary rendering, wasted work, and expensive synchronous paths, then proposes improvements with evidence.</p>
+        <p><strong>Intruder: Security.</strong> Does defensive security work within the repositories it's authorized to inspect. Its brief calls for demonstrable issues and root-cause fixes, not speculative scanner noise or work outside that scope.</p>
+        <p><strong>Onramp: Agent DX.</strong> Improves the setup instructions, tooling, debug access, and QA paths that coding agents use. A reliable development path helps every bot that touches the repository.</p>
+        <h3>Production &amp; support</h3>
+        <p><strong>Triager: Error Triage.</strong> Uses Sentry to find a high-impact unresolved error, investigates it, and delegates a root-cause fix through a draft PR. Silencing the error isn't the objective.</p>
+        <p><strong>Pipeline: Data Pipelines.</strong> Uses Astronomer/Airflow to investigate a failing active DAG and work toward a fix with tests. Disabling a broken job isn't the same as repairing it.</p>
+        <p><strong>Medic: Support Triage.</strong> Investigates actionable Linear support issues one at a time, records findings, and can open a fix. It uses its own Linear app and GitHub bot identity, so its work isn't presented as mine.</p>
+        <p><strong>Compass: Product Guide.</strong> Answers product and code questions for teammates in Slack, plus analytics questions through Metabase. It gives non-engineering teammates a place to ask how a feature works without waiting for me to dig through the code.</p>
+        <hr>
+        <h2>What I've learned</h2>
+        <p><strong>Stop noise at the source.</strong> I expanded Sieve's job from archiving notifications to finding subscriptions and settings we can turn off. That's better than cleaning up the same noise every hour.</p>
+        <p><strong>I need decisions, not status dumps.</strong> Twenty assistants could easily give me twenty more places to check. I use Switchboard to bring the reports together, ask Bottleneck for one top priority, and work through Stamp's review list one decision at a time. The useful output isn't everything they've found. It's what needs my attention, why it matters, and the call I need to make.</p>
+        <p><strong>Sometimes the useful answer is to do less.</strong> When a couple of my projects got caught in the weeds, I asked Chisel to cut them back to what was absolutely critical—including questioning whether any of it was. I don't just want help getting through a larger task list faster. I want the assistants to challenge what belongs on the list in the first place.</p>
+        <p>That's what I'm trying to get out of Grok Bot: fewer loose ends to chase, and more attention left for the coding and decisions that need me.</p>
+        <p>And yes, Switchboard wrote this article</p>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <p>HTML + CSS. No JavaScript. No tracking.</p>
+      <div><a href="https://neeley.dev/">neeley.dev <span aria-hidden="true">↗</span></a><a href="https://github.com/redreceipt/redreceipt.github.io">This site’s source <span aria-hidden="true">↗</span></a></div>
+    </footer>
+  </div>
+</body>
+</html>
