@@ -38,19 +38,9 @@
         <h1 id="article-title">My Team of Twenty Bots</h1>
         <p><em>How I use small, specialized AI assistants alongside my work as a software engineer.</em></p>
         <p>I'm Michael Neeley (<a href="https://github.com/redreceipt">@redreceipt</a>), a software engineer at <a href="https://differential.com">Differential</a> working on Apollos, software for churches. The work isn't just writing code. There are pull requests to review, issues to triage, support questions to investigate, and a steady stream of notifications to sort through.</p>
-        <p>I use Grok Bot to delegate parts of that work to a roster of twenty assistants. Each has a name, a specific job, and instructions about what it can change and when it should ask me. Some run on schedules; others respond to a question or a handoff from another bot.</p>
-        <p>This is a snapshot of the setup in October 2026, not a productivity study or a claim that twenty agents run everything unattended. The useful part is the division of work, and the limits around it.</p>
-        <hr>
-        <h2>Why a team instead of one assistant?</h2>
-        <p>A narrow brief is easier to reason about than a single assistant responsible for everything. I can change the inbox rules without changing how code reviews work, or pause a code-improvement bot without stopping the morning briefing.</p>
-        <ul>
-          <li><strong>One primary job per bot.</strong> A cleanup bot looks for cleanup. A review bot helps with reviews. Their instructions can be specific instead of trying to cover every situation.</li>
-          <li><strong>Explicit ownership, including exceptions.</strong> Sieve owns inbox triage. Semver has a narrower exception for dependency-related email. That boundary needs to be written down, not assumed.</li>
-          <li><strong>Separate permissions.</strong> Reading a ticket, opening a PR, approving it, and merging it are different powers. A bot doesn't need all of them to be useful.</li>
-          <li><strong>Names help.</strong> A message from Nanny has a clearer purpose than another update from an unnamed general assistant.</li>
-        </ul>
-        <h2>How it fits together</h2>
-        <p><strong>Switchboard</strong> is the coordinator. It gathers reports, delegates to the appropriate bot, and prepares my weekday briefing. The specialists can also report directly to me. It's a way to consolidate information, not a strict chain through which every action has to pass.</p>
+        <p>I use twenty Grok bots for recurring jobs: watching projects, sorting notifications, keeping PRs moving, and investigating bugs. Here's how I've split up that work, as of October 2026.</p>
+        <h2>How I organize the work</h2>
+        <p><strong>Switchboard</strong> gathers reports from the specialists and prepares my weekday briefing. I use it to bring updates together and pass new instructions to the bots they affect, instead of repeating myself in every chat.</p>
         <figure class="bot-map" aria-labelledby="bot-map-caption">
           <div class="bot-map-node">
             <strong>Michael</strong>
@@ -80,72 +70,45 @@
               <ul role="list"><li>Triager</li><li>Pipeline</li><li>Medic</li><li>Compass</li></ul>
             </div>
           </div>
-          <p class="bot-map-label">For delegated code changes</p>
-          <ol class="bot-map-flow">
-            <li>Cloud agent</li>
-            <li>Pull request</li>
-            <li>Review &amp; CI</li>
-          </ol>
-          <figcaption id="bot-map-caption">Switchboard collects digests from the specialists; they can also contact me directly. The code path applies to coding tasks, not every bot action.</figcaption>
+          <figcaption id="bot-map-caption">Switchboard consolidates reports from the specialists; they can also contact me directly.</figcaption>
         </figure>
-        <p>For hands-on coding, many of the bots hand a bounded task to a Cursor cloud agent. The result comes back as a pull request. What happens next depends on the bot's permissions and the repository's review and CI requirements: some PRs stay draft for a decision, while others can use auto-merge.</p>
-        <p>That distinction matters. Some bots are authorized to submit certain approvals through my GitHub account. That isn't the same as an independent human review.</p>
-        <p>The jobs span GitHub, Linear, Slack, and work Gmail, with tools such as Sentry, Astronomer/Airflow, Metabase, and Expo for specialized work. Access to a tool still has to be configured; having it in a bot's brief doesn't make the connection work.</p>
         <h2>The daily rhythm</h2>
         <p><strong>Before the weekday briefing</strong>, the coordination bots gather project status, scope concerns, and PRs waiting on a decision. Switchboard brings those reports together so I don't have to read each one separately.</p>
-        <p><strong>Through the day</strong>, scheduled scans and event-triggered routines keep the work moving. Several code and production bots have weekday hourly routines. Sieve checks inbox noise hourly, Nanny watches my PRs, and Semver combines a weekday dependency sweep with PR-event triggers. These are different schedules, not twenty bots all firing at once.</p>
-        <p><strong>Weekly and monthly passes</strong> cover work that doesn't need an hourly loop: Foreman's stale-ticket sweep, Bottleneck's weekly constraint brief, and Keystone's monthly technical proposal in Linear.</p>
-        <p>The scans are meant to stay quiet unless they find useful work or need a decision. The goal is fewer interruptions, not another stream of status messages.</p>
+        <p><strong>Through the day</strong>, Sieve checks inbox noise hourly, Nanny watches my PRs, and Semver keeps up with dependency updates. The code-improvement bots look for work without filling the review queue with competing PRs.</p>
+        <p><strong>Weekly and monthly passes</strong> cover Foreman's stale-ticket sweep, Bottleneck's constraint brief, and Keystone's technical proposal in Linear.</p>
         <hr>
         <h2>The roster</h2>
         <h3>Coordination</h3>
         <p><strong>Switchboard: Executive Assistant.</strong> Coordinates the other bots, gathers their digests, and prepares the briefing. When I change a standing rule, I can ask Switchboard to relay it to the bots it affects.</p>
-        <p><strong>Foreman: Project Manager.</strong> Watches the Linear projects I'm responsible for and posts updates when something changes. Its weekly stale-ticket sweep also covers my assigned issues, including ones outside a project. Clear follow-up work can go to a cloud agent; closing or changing ownership needs a separate decision.</p>
+        <p><strong>Foreman: Project Manager.</strong> Watches the Linear projects I'm responsible for and posts updates when something changes. Its weekly sweep catches my assigned issues that have gone quiet, even if they aren't in a project.</p>
         <p><strong>Trawler: Linear Projects.</strong> Takes a wider view across engineering projects and reports material status, blockers, and drift. Foreman focuses on moving my work forward; Trawler supplies a broader picture.</p>
-        <p><strong>Chisel: Engineering Manager.</strong> The scope critic. It compares planned work with active issues and PRs, then recommends what to cut, defer, or combine. Those are recommendations, not permission to rearrange everyone's work automatically.</p>
-        <p><strong>Bottleneck: Constraints Advisor.</strong> Looks across the available business and project tools and proposes one top constraint, with evidence and concrete recommendations. The point is to force a priority, rather than produce another long status list. Its scope includes Slack, Linear, and Basecamp where access is available.</p>
+        <p><strong>Chisel: Engineering Manager.</strong> The scope critic. It compares planned work with active issues and PRs, then gives me concrete suggestions about what to cut, defer, or combine.</p>
+        <p><strong>Bottleneck: Constraints Advisor.</strong> Looks across the available business and project tools and proposes one top constraint, with evidence and concrete recommendations. I want a priority to act on, not another long status list.</p>
         <h3>Inbox &amp; PRs</h3>
         <p><strong>Sieve: Email &amp; Linear Triage.</strong> Owns the rules for clearing skippable work Gmail and Linear notifications while keeping real asks and blockers. For GitHub email, it checks the current PR or issue state rather than trusting the subject line. Archiving is a whole-thread operation, not deleting individual messages. It also looks for noise that can be turned off at the source, so it doesn't have to keep cleaning up the same notifications.</p>
         <p><strong>Nanny: PR Monitor.</strong> Watches my PRs for CI, reviews, comments, and work that needs attention. Drafts are included: it summarizes their state and asks whether I want them marked ready, closed, or kept. It shouldn't make that decision for me or ask the same unchanged question every hour.</p>
-        <p><strong>Stamp: PR Reviews.</strong> Handles mechanical reviews and helps prepare more substantial ones. For in-scope simple changes, a clean automated review can lead to an approval through my account. For changes needing judgment, it gathers the review feedback and prepares a brief for me instead. It avoids redundant Codex requests when an existing approval already covers the work. On in-scope conflicted PRs, it leaves one comment review asking the author to resolve the conflict and re-request. It doesn't merge PRs. In repositories that require no approvals, it can tell the author that my approval isn't a prerequisite rather than creating another unnecessary wait.</p>
-        <p><strong>Semver: Dependency Updates.</strong> Works through Dependabot PRs, separates routine updates from risky ones, and can delegate the changes needed to get a dependency branch into shape. It has permission to approve and merge certain low-risk updates; major or uncertain changes come back to me for a decision. Auto-merge may already be armed while a PR waits for that decision, so its presence alone doesn't mean I've approved the update. Semver also has a limited dependency-email cleanup role alongside Sieve.</p>
+        <p><strong>Stamp: PR Reviews.</strong> Handles mechanical reviews and prepares briefs for changes that need my judgment. For in-scope simple changes, a clean automated review can lead to an approval through my account. It follows up on review feedback and conflicts so I don't have to chase every author myself. It doesn't merge PRs. In repos that don't require approvals, it tells authors they don't need to wait for mine.</p>
+        <p><strong>Semver: Dependency Updates.</strong> Works through Dependabot PRs and gets dependency branches into shape. It can approve and merge certain low-risk updates; major or uncertain changes come back to me for a decision. It also handles a limited slice of dependency-related email alongside Sieve.</p>
         <h3>Code improvement</h3>
-        <p>These bots share a useful rule: <strong>check for an existing open PR in the same workstream before starting another.</strong> Each has a label, such as <code>architecture</code>, <code>slop</code>, or <code>e2e</code>. The bot searches the repositories in its scope and waits if that label already has an open PR. The aim is to keep an hourly schedule from producing an hourly pile of review work. It's an instruction the bot must follow, not a platform-enforced lock.</p>
-        <p>Their PR settings aren't identical. Keystone, Hotpath, and Intruder are draft-first. Codemod and Smoke are configured to open ready-for-review PRs with reviewers and auto-merge where supported. Pruner holds work in draft while CI is incomplete, then moves it toward review. Onramp also waits for green CI before requesting reviewers. Those differences belong in the briefs; there isn't one universal workflow for every code bot.</p>
+        <p>I give these bots a one-open-PR rule: if their workstream already has an open PR, wait rather than start another. That keeps the review queue manageable.</p>
         <p><strong>Keystone: Software Architect.</strong> Looks for unclear boundaries and handoffs between services and apps, then proposes concrete structural improvements. It also has a monthly technical-proposal routine that files a recommendation in Linear Triage, with evidence, tradeoffs, and a migration plan.</p>
         <p><strong>Codemod: TypeScript Migration.</strong> Converts JavaScript to TypeScript in small, mechanical steps. The brief is to improve type safety without quietly changing behavior.</p>
         <p><strong>Pruner: Code Cleanup.</strong> Looks for dead code, pointless wrappers, redundant tests, and unnecessary complexity. Deletion and simplification are the job, not adding another abstraction.</p>
         <p><strong>Smoke: E2E Testing.</strong> Looks for critical flows without useful end-to-end coverage and adds tests for those gaps. The aim is protection against real regressions, not a bigger test count.</p>
-        <p><strong>Hotpath: Performance.</strong> Looks for concrete performance problems: repeated queries, unnecessary rendering, wasted work, and expensive synchronous paths. Improvements need evidence, not just a claim that a shorter implementation is faster.</p>
+        <p><strong>Hotpath: Performance.</strong> Looks for repeated queries, unnecessary rendering, wasted work, and expensive synchronous paths, then proposes improvements with evidence.</p>
         <p><strong>Intruder: Security.</strong> Does defensive security work within the repositories it's authorized to inspect. Its brief calls for demonstrable issues and root-cause fixes, not speculative scanner noise or work outside that scope.</p>
         <p><strong>Onramp: Agent DX.</strong> Improves the setup instructions, tooling, debug access, and QA paths that coding agents use. A reliable development path helps every bot that touches the repository.</p>
         <h3>Production &amp; support</h3>
         <p><strong>Triager: Error Triage.</strong> Uses Sentry to find a high-impact unresolved error, investigates it, and delegates a root-cause fix through a draft PR. Silencing the error isn't the objective.</p>
         <p><strong>Pipeline: Data Pipelines.</strong> Uses Astronomer/Airflow to investigate a failing active DAG and work toward a fix with tests. Disabling a broken job isn't the same as repairing it.</p>
-        <p><strong>Medic: Support Triage.</strong> Investigates actionable Linear support issues one at a time, records findings, and can open a fix. It has its own Linear app and GitHub bot identity rather than presenting that output as my personal work. Mobile investigations can include Expo and emulator or simulator proof. Its environment and permissions have needed setup and recovery work too; being assigned a ticket doesn't guarantee it can complete every step unattended.</p>
-        <p><strong>Compass: Product Guide.</strong> Answers product and code questions for teammates in Slack, with analytics questions added through Metabase. Making that useful took more than adding a bot to a channel: the initial team-bot setup asked people to connect their own accounts, and I worked on shared tool access to reduce that friction. Shared tool access reduced that friction, but account linking and subscription requirements still mattered.</p>
+        <p><strong>Medic: Support Triage.</strong> Investigates actionable Linear support issues one at a time, records findings, and can open a fix. It uses its own Linear app and GitHub bot identity, so its work isn't presented as mine.</p>
+        <p><strong>Compass: Product Guide.</strong> Answers product and code questions for teammates in Slack, plus analytics questions through Metabase. It gives non-engineering teammates a place to ask how a feature works without waiting for me to dig through the code.</p>
         <hr>
-        <h2>Guardrails and lessons learned</h2>
-        <p>The setup is useful, but it's not self-maintaining. Instructions can drift, credentials can be missing, and an agent can confidently summarize a result it hasn't actually demonstrated. These are the rules I keep coming back to.</p>
-        <p><strong>1. Separate permissions from intentions.</strong> A bot that can read GitHub doesn't automatically need permission to approve or merge. Stamp and Semver have specific authority to act through my account; Medic has its own app identities. A proposed action, an authorized action, and a completed action should be distinguishable in the record.</p>
-        <p><strong>2. Distinguish speaking for me from speaking as a bot.</strong> Messages that represent me personally need approval. That doesn't mean every message any bot sends is a draft: support bots reply under their own identities, and several routines are explicitly authorized to post updates or reviews. The scope of that standing permission matters.</p>
-        <p><strong>3. Keep changes small without a numeric line cap.</strong> I removed the old 200-line rule. The instruction now is to do the smallest complete job, especially when responding to feedback. Old wording has resurfaced in saved instructions. A rule isn't really updated until the brief, saved memory, and scheduled prompts agree.</p>
-        <p><strong>4. Put a limit on work in progress.</strong> The one-open-PR label check is a way to apply backpressure. A bot should spend its time getting the existing item unstuck before creating another review obligation.</p>
-        <p><strong>5. Verify the result on the real surface.</strong> Green unit tests aren't proof that a screen works. A key being present isn't proof that a write succeeded. A merged PR isn't proof that its fix has reached users. Ask for the actual request, screenshot, log, or resulting state, and label anything that couldn't be checked.</p>
-        <p><strong>6. Make ownership and exceptions explicit.</strong> Sieve owns general inbox triage; Semver has a limited exception. Nanny watches my PRs; Stamp handles review work on other people's PRs. Named boundaries are easier to correct than two bots independently deciding that a task belongs to them.</p>
-        <p><strong>7. Reduce noise rather than just sorting it.</strong> Stay quiet when there's no useful update, consolidate reports through Switchboard, and turn off redundant notifications where appropriate. Don't tag someone unless they have something to do. Don't update a branch merely because it's behind.</p>
-        <p><strong>8. Treat rules as configuration that needs maintenance.</strong> Telling Switchboard about a change is a convenient way to distribute it, but a confirmation isn't proof that every saved copy is consistent. The line-cap cleanup and the shared-access work both needed follow-up.</p>
-        <h2>How to start your own</h2>
-        <p>I wouldn't start by reproducing this whole roster. I'd start with one recurring job:</p>
-        <ol>
-          <li><strong>Begin with a read-only summary.</strong> Let a bot identify what needs attention before giving it permission to archive, approve, or change anything.</li>
-          <li><strong>Write a short brief.</strong> Include the job, its scope, what it must not do, and when to ask you.</li>
-          <li><strong>Add write permissions separately.</strong> Be specific about the actions and identities involved. Don't confuse an automated approval with another person's review.</li>
-          <li><strong>Limit work in progress.</strong> Make finishing or escalating the existing task more important than starting another.</li>
-          <li><strong>Prove the real path.</strong> Test with the account and interface people will actually use. A successful owner-side test doesn't establish that a teammate's Slack request will work.</li>
-          <li><strong>Add coordination when it earns its place.</strong> Once several bots produce useful reports, one briefing can be easier to use than several separate digests.</li>
-        </ol>
-        <p>For me, the interesting part isn't having twenty bots. It's making each one responsible for a job I can understand, with enough evidence to tell whether it did that job and clear limits on what it can do next.</p>
+        <h2>What I've learned</h2>
+        <p><strong>Stop noise at the source.</strong> I expanded Sieve's job from archiving notifications to finding subscriptions and settings we can turn off. That's better than cleaning up the same noise every hour.</p>
+        <p><strong>Small changes beat a line limit.</strong> I removed the old 200-line PR rule and now ask for the smallest complete fix. The old wording kept resurfacing, so changing a rule also means checking the saved briefs and routine prompts—not just mentioning it in chat.</p>
+        <p><strong>Test with the people who will use it.</strong> Trying Compass with teammates uncovered account-linking requirements I hadn't hit in my own chat. I worked on shared tool access, but testing with the person asking the question was part of making it useful.</p>
+        <p>That's what I'm trying to get out of Grok Bot: fewer loose ends to chase, and more attention left for the coding and decisions that need me.</p>
         <p>If you're building something similar, I'd love to compare notes. Find me on GitHub at <a href="https://github.com/redreceipt">@redreceipt</a>.</p>
       </article>
     </main>
