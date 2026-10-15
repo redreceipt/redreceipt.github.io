@@ -3,7 +3,8 @@
 https://redreceipt.github.io/
 
 A handwritten HTML + CSS portfolio. No JavaScript, framework, package manager,
-web fonts, tracking, or API calls. The homepage is served as written.
+or tracking. IBM Plex Mono is loaded from Google Fonts. The homepage is served
+as written.
 
 ## Preview
 
@@ -41,6 +42,7 @@ The original Jekyll configuration, layouts, posts, and conference pages remain
 to preserve older URLs. The malformed collection default in `_config.yml`
 has been fixed so Pages can build again. Jekyll processes the legacy Markdown
 and Sass only; the portfolio has no front matter, Liquid, or generated content.
+Markdown pages use `style.scss` and the same monospace palette as the homepage.
 The Python preview shows the new portfolio, not the rendered legacy pages.
 
 The original Jekyll Now license is retained in `LICENSE`.

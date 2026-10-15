@@ -92,6 +92,11 @@ collections:
 defaults:
   - scope:
       path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  - scope:
+      path: ""
       type: "connecttech2018"
     values:
       layout: "post"
