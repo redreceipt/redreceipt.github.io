@@ -101,14 +101,14 @@
         <p>I give these bots a one-open-PR rule: if their workstream already has an open PR, wait rather than start another. That keeps the review queue manageable.</p>
         <p><strong>Keystone: Software Architect.</strong> Looks for unclear boundaries and handoffs between services and apps, then proposes concrete structural improvements. It also has a monthly technical-proposal routine that files a recommendation in Linear Triage, with evidence, tradeoffs, and a migration plan.</p>
         <p><strong>Codemod: TypeScript Migration.</strong> Converts JavaScript to TypeScript in small, mechanical steps. The brief is to improve type safety without quietly changing behavior.</p>
-        <p><strong>Pruner: Code Cleanup.</strong> Looks for dead code, pointless wrappers, redundant tests, and unnecessary complexity. Deletion and simplification are the job, not adding another abstraction.</p>
-        <p><strong>Smoke: E2E Testing.</strong> Looks for critical flows without useful end-to-end coverage and adds tests for those gaps. The aim is protection against real regressions, not a bigger test count.</p>
+        <p><strong>Pruner: Code Cleanup.</strong> Looks for dead code, redundant tests, and code that can be simplified.</p>
+        <p><strong>Smoke: E2E Testing.</strong> Looks for critical flows without useful end-to-end coverage and adds tests for those gaps.</p>
         <p><strong>Hotpath: Performance.</strong> Looks for repeated queries, unnecessary rendering, wasted work, and expensive synchronous paths, then proposes improvements with evidence.</p>
         <p><strong>Intruder: Security.</strong> Does defensive security work within the repositories it's authorized to inspect. Its brief calls for demonstrable issues and root-cause fixes, not speculative scanner noise or work outside that scope.</p>
         <p><strong>Onramp: Agent DX.</strong> Improves the setup instructions, tooling, debug access, and QA paths that coding agents use. A reliable development path helps every bot that touches the repository.</p>
         <h3>Production &amp; support</h3>
-        <p><strong>Triager: Error Triage.</strong> Uses Sentry to find a high-impact unresolved error, investigates it, and delegates a root-cause fix through a draft PR. Silencing the error isn't the objective.</p>
-        <p><strong>Pipeline: Data Pipelines.</strong> Uses Astronomer/Airflow to investigate a failing active DAG and work toward a fix with tests. Disabling a broken job isn't the same as repairing it.</p>
+        <p><strong>Triager: Error Triage.</strong> Uses Sentry to find a high-impact unresolved error, investigates it, and delegates a root-cause fix through a draft PR.</p>
+        <p><strong>Pipeline: Data Pipelines.</strong> Uses Astronomer/Airflow to investigate a failing active DAG and work toward a fix with tests.</p>
         <p><strong>Medic: Support Triage.</strong> Investigates actionable Linear support issues one at a time, records findings, and can open a fix. It uses its own Linear app and GitHub bot identity, so its work isn't presented as mine.</p>
         <p><strong>Compass: Product Guide.</strong> Answers product and code questions for teammates in Slack, plus analytics questions through Metabase. It gives non-engineering teammates a place to ask how a feature works without waiting for me to dig through the code.</p>
         <hr>
@@ -122,7 +122,6 @@
     </main>
 
     <footer class="site-footer">
-      <p>HTML + CSS. No JavaScript. No tracking.</p>
       <div><a href="https://neeley.dev/">neeley.dev <span aria-hidden="true">↗</span></a><a href="https://github.com/redreceipt/redreceipt.github.io">This site’s source <span aria-hidden="true">↗</span></a></div>
     </footer>
   </div>
